@@ -44,6 +44,25 @@ describe('Sending a POST to /api/v1/sum', ()=>{
           done();
         });
     });
+
+    it('when either of the sums are mission', (done)=>{
+      api.post('/api/v1/sum')
+        .send({
+          type: 'addition',
+          sum1: 1
+        })
+        .expect(400)
+        .end((err, res)=>{
+          if(err) return done(err);
+
+          res.body.status.should.be.equal(400);
+          res.body.code.should.be.equal(3);
+          res.body.error.should.be.equal('sums missing');
+          res.body.message.should.be.equal('Both sums to be added together must be in the payload.');
+
+          done();
+        });
+    });
   });
 
   describe('should succeed', ()=>{

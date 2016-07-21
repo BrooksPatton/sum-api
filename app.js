@@ -29,6 +29,14 @@ app.post('/api/v1/sum', (req, res, next)=>{
       message: 'The type requested is not allowed. Please check the documentation for what types you can use.'
     });
   }
+  else if(!req.body.num1 || !req.body.num2) {
+    return res.status(400).json({
+      status: 400,
+      code: 3,
+      error: 'sums missing',
+      message: 'Both sums to be added together must be in the payload.'
+    });
+  }
 
   next();
 });
