@@ -2,11 +2,21 @@
 
 const express = require('express');
 const bodyParser = require('body-parser');
+const marked = require('marked');
+const fs = require('fs');
 
 let app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+app.get('/', (req, res, next)=>{
+  fs.readFile('README.md', 'utf8', (err, data)=>{
+    if(err) return next(err);
+
+    res.send(marked(data));
+  });
+});
 
 app.get('/api/v1/health', (req, res, next)=>{
   res.json({status: 'running'});

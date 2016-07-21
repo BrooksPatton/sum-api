@@ -1,6 +1,8 @@
 # sum-api
 
-An API that sums two numbers together and returns the result
+An API that sums two numbers together and returns the result.
+
+The source for this api can be found at https://github.com/BrooksPatton/sum-api
 
 # How to use
 
