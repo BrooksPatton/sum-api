@@ -104,3 +104,12 @@ describe('Sending a POST to /api/v1/sum', ()=>{
     });
   });
 });
+
+describe('Sending a GET to /api/v1/sum', ()=>{
+  describe('should fail', ()=>{
+    it('as that method is not allowed', (done)=>{
+      api.get('/api/v1/sum')
+      .expect(405, done);
+    });
+  });
+});

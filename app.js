@@ -56,4 +56,8 @@ app.post('/api/v1/sum', (req, res, next)=>{
   res.json({result: sum});
 });
 
+app.use('/api/v1/sum', (req, res, next)=>{
+  res.sendStatus(405);
+});
+
 module.exports = app;
