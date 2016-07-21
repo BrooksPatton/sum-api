@@ -21,6 +21,14 @@ app.post('/api/v1/sum', (req, res, next)=>{
       message: 'The payload was incorrect. Pleas verify that you are sending the correct looking object and try again.'
     });
   }
+  else if(req.body.type !== 'addition') {
+    return res.status(400).json({
+      status: 400,
+      code: 2,
+      error: 'bad type',
+      message: 'The type requested is not allowed. Please check the documentation for what types you can use.'
+    });
+  }
 
   next();
 });

@@ -22,9 +22,30 @@ describe('Sending a POST to /api/v1/sum', ()=>{
           res.body.message.should.be.equal('The payload was incorrect. Pleas verify that you are sending the correct looking object and try again.');
 
           done();
+        });
+    });
+
+    it('when the type is not "addition"', (done)=>{
+      api.post('/api/v1/sum')
+        .send({
+          type: 'subtraction',
+          sum1: 1,
+          sum2: 4
         })
-    })
-  })
+        .expect(400)
+        .end((err, res)=>{
+          if(err) return done(err);
+
+          res.body.status.should.be.equal(400);
+          res.body.code.should.be.equal(2);
+          res.body.error.should.be.equal('bad type');
+          res.body.message.should.be.equal('The type requested is not allowed. Please check the documentation for what types you can use.');
+
+          done();
+        });
+    });
+  });
+
   describe('should succeed', ()=>{
     it('in adding two numbers together', (done)=>{
       api.post('/api/v1/sum')
