@@ -1,0 +1,30 @@
+{
+  "name": "sum-api",
+  "version": "1.0.0",
+  "description": "Send in a json object and get the sum of two numbers",
+  "main": "bin/www",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BrooksPatton/sum-api.git"
+  },
+  "keywords": [
+    "sum",
+    "api"
+  ],
+  "author": "Brooks Patton",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BrooksPatton/sum-api/issues"
+  },
+  "homepage": "https://github.com/BrooksPatton/sum-api#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "supertest": "^1.2.0"
+  },
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
