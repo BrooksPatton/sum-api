@@ -113,3 +113,30 @@ describe('Sending a GET to /api/v1/sum', ()=>{
     });
   });
 });
+
+describe('Sending a PUT to /api/v1/sum', ()=>{
+  describe('should fail', ()=>{
+    it('as that method is not allowed', (done)=>{
+      api.put('/api/v1/sum')
+      .expect(405, done);
+    });
+  });
+});
+
+describe('Sending a PATCH to /api/v1/sum', ()=>{
+  describe('should fail', ()=>{
+    it('as that method is not allowed', (done)=>{
+      api.patch('/api/v1/sum')
+      .expect(405, done);
+    });
+  });
+});
+
+describe('Sending a DELETE to /api/v1/sum', ()=>{
+  describe('should fail', ()=>{
+    it('as that method is not allowed', (done)=>{
+      api.del('/api/v1/sum')
+      .expect(405, done);
+    });
+  });
+});
