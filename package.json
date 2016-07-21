@@ -4,7 +4,8 @@
   "description": "Send in a json object and get the sum of two numbers",
   "main": "bin/www",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "start": "node bin/www"
   },
   "repository": {
     "type": "git",
