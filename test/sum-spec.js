@@ -29,8 +29,8 @@ describe('Sending a POST to /api/v1/sum', ()=>{
       api.post('/api/v1/sum')
         .send({
           type: 'subtraction',
-          sum1: 1,
-          sum2: 4
+          num1: 1,
+          num2: 4
         })
         .expect(400)
         .end((err, res)=>{
@@ -45,11 +45,11 @@ describe('Sending a POST to /api/v1/sum', ()=>{
         });
     });
 
-    it('when either of the sums are mission', (done)=>{
+    it('when either of the sums are missing', (done)=>{
       api.post('/api/v1/sum')
         .send({
           type: 'addition',
-          sum1: 1
+          num1: 1
         })
         .expect(400)
         .end((err, res)=>{
@@ -59,6 +59,26 @@ describe('Sending a POST to /api/v1/sum', ()=>{
           res.body.code.should.be.equal(3);
           res.body.error.should.be.equal('sums missing');
           res.body.message.should.be.equal('Both sums to be added together must be in the payload.');
+
+          done();
+        });
+    });
+
+    it('when either of the sums are not numbers', (done)=>{
+      api.post('/api/v1/sum')
+        .send({
+          type: 'addition',
+          num1: 1,
+          num2: '3'
+        })
+        .expect(400)
+        .end((err, res)=>{
+          if(err) return done(err);
+
+          res.body.status.should.be.equal(400);
+          res.body.code.should.be.equal(4);
+          res.body.error.should.be.equal('sums not numbers');
+          res.body.message.should.be.equal('Both sums to be added together must be numbers.');
 
           done();
         });

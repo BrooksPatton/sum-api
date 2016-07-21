@@ -37,6 +37,14 @@ app.post('/api/v1/sum', (req, res, next)=>{
       message: 'Both sums to be added together must be in the payload.'
     });
   }
+  else if(typeof(req.body.num1) !== 'number' || typeof(req.body.num2) !== 'number') {
+    return res.status(400).json({
+      status: 400,
+      code: 4,
+      error: 'sums not numbers',
+      message: 'Both sums to be added together must be numbers.'
+    });
+  }
 
   next();
 });
